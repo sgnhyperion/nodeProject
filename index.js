@@ -88,19 +88,13 @@
 
 // Making a server
 
-const {read} = require('fs');
+const fs = require('fs');
+const data = fs.readFileSync('index.html');
 const http = require('http');
 
 const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'text/html');
-
-    res.write("<html><head><title>NodeJs</title></head><body>");
-    if(req.url === '/') {
-        res.write("<h1>Hello World</h1>");
-    } else if(req.url === '/login') {
-        res.write("<h1>Hello login</h1>");
-    }
-    res.write("<p>Welcome to NodeJs</p></body></html>");
+    res.write(data);
     res.end();
 });
 
